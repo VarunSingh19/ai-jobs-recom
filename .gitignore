@@ -1,0 +1,13 @@
+*.env
+*/node_modules
+*.log
+*.DS_Store
+*.swp
+*.swo
+
+# Ignore all .env files
+# Ignore all node_modules directories
+# Ignore all log files
+# Ignore all .DS_Store files
+
+node_modules/
