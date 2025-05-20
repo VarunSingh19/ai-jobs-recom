@@ -6,6 +6,7 @@ import Link from "next/link"
 interface JobCardProps {
   job: Job
   showDetails?: boolean
+  listView?: boolean
 }
 
 export default function JobCard({ job, showDetails = false }: JobCardProps) {

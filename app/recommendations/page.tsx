@@ -45,6 +45,11 @@ export default function RecommendationsPage() {
     }
   }
 
+  // Filter recommendations to only those with matchScore > 80
+  const highMatchRecommendations = recommendations.filter(
+    (rec) => rec.matchScore >= 80
+  )
+
   if (status === "loading") {
     return (
       <div className="flex items-center justify-center min-h-[calc(100vh-140px)]">
@@ -71,26 +76,35 @@ export default function RecommendationsPage() {
 
         {error && <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded mb-6">{error}</div>}
 
-        {success && recommendations.length === 0 && (
+        {success && highMatchRecommendations.length === 0 && (
           <div className="text-center py-12 bg-gray-50 rounded-lg">
-            <h3 className="text-xl font-medium text-gray-600">No matches found</h3>
+            <h3 className="text-xl font-medium text-gray-600">No high matches found</h3>
             <p className="text-gray-500 mt-2">Try updating your profile with more skills or different preferences</p>
           </div>
         )}
 
-        {recommendations.length > 0 && (
+        {highMatchRecommendations.length > 0 && (
           <div className="space-y-6">
-            <h2 className="text-2xl font-semibold">Your Top Matches</h2>
+            <h2 className="text-2xl font-semibold">Found A Perfect Match</h2>
 
-            {recommendations.map((recommendation, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200">
+            {highMatchRecommendations.map((recommendation, index) => (
+              <div
+                key={index}
+                className={`bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 ${recommendation.matchScore >= 90 ? "ring-2 ring-green-400" : ""
+                  }`}
+              >
                 <div className="p-6">
                   <div className="flex justify-between items-start mb-4">
                     <div>
                       <h3 className="text-xl font-semibold text-blue-600">{recommendation.job.title}</h3>
                       <p className="text-gray-600">{recommendation.job.company}</p>
                     </div>
-                    <div className="bg-blue-100 text-blue-800 text-sm font-semibold px-3 py-1 rounded-full">
+                    <div
+                      className={`text-sm font-semibold px-3 py-1 rounded-full ${recommendation.matchScore >= 90
+                        ? "bg-green-100 text-green-800"
+                        : "bg-blue-100 text-blue-800"
+                        }`}
+                    >
                       {recommendation.matchScore}% Match
                     </div>
                   </div>

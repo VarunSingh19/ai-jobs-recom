@@ -1,8 +1,8 @@
-import { type ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 
 export const jobTypes = [
@@ -10,7 +10,7 @@ export const jobTypes = [
   { value: "onsite", label: "On-site" },
   { value: "hybrid", label: "Hybrid" },
   { value: "any", label: "Any" },
-]
+];
 
 export const skillsList = [
   "JavaScript",
@@ -57,4 +57,4 @@ export const skillsList = [
   "Machine Learning",
   "Data Science",
   "Blockchain",
-]
+];

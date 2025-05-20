@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, Variants } from "framer-motion"
 import {
   ChevronRight,
   CheckCircle,
@@ -83,23 +83,22 @@ const pulse = {
     transition: {
       duration: 2,
       repeat: Infinity,
-      repeatType: "loop"
+      repeatType: "loop" as const,
     }
   }
 }
 
-const float = {
+const float: Variants = {
   initial: { y: 0 },
   animate: {
     y: [0, -10, 0],
     transition: {
       duration: 3,
       repeat: Infinity,
-      repeatType: "loop"
-    }
-  }
-}
-
+      repeatType: "loop", // ✅ valid literal
+    },
+  },
+};
 // Hero illustrations
 const HeroIllustration = () => (
   <div className="relative w-full h-full flex items-center justify-center">
